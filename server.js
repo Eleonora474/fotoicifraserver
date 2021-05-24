@@ -54,35 +54,6 @@ app.post('/sendmail', upload.array('images'), async (req, res) => {
   }
 })
 
-app.post('/order', upload.array('images'), async (req, res) => {
-  try {
-    const { email, phone, id, data: jsonData } = req.body
-    const amount = await getProductPrice(id)
-    const account = nanoid()
-
-    const uploadedFiles = req.files
-    // ? mb send without stringify
-    const data = JSON.parse(jsonData)
-    const files = getFiles(uploadedFiles, data)
-    const html = getFilesInfoInHTML(files)
-    const attachments = files.map(({ filename, path }) => ({
-      filename,
-      path,
-    }))
-    const dataToSave = getDataToSave(email, html, attachments)
-    fs.appendFileSync(`./usersWaitingForPay/${account}.txt`, dataToSave)
-
-    const qiwiRedirectURL = getQiwiRedirectURL({
-      successUrl: 'http://localhost',
-      amount: 1,
-      clientEmail: email,
-      account,
-    })
-    return res.json({ url: qiwiRedirectURL })
-  } catch (e) {
-    return res.status(500).json({ error: e.message })
-  }
-})
 
 const port = process.env.PORT || 5000
 app.listen(port)
