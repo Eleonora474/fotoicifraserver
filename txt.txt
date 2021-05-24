@@ -1,0 +1,23 @@
+
+fotoicifraserver
+CU98UaKs2dx75xq3
+fotoicifraserver@gmail.com
+
+
+
+
+
+https://accounts.google.com/o/oauth2/v2/auth?
+scope=https://mail.google.com/&
+access_type=offline&
+include_granted_scopes=true&
+response_type=code&
+state=state_parameter_passthrough_value&
+redirect_uri=http://localhost&
+client_id=778010059769-q478u3fe540ev6au7rhhrm8dpptn2coc.apps.googleusercontent.com
+
+
+curl \
+--request POST \
+--data "code=4/0AY0e-g7fV6QZPpLktfOGC2n20IHdPnEKgps4jEeUUmC1E7WXtlGz5Bj-z74MHvtSnMUUog&client_id=778010059769-q478u3fe540ev6au7rhhrm8dpptn2coc.apps.googleusercontent.com&client_secret=3eIA4u7fOTbGzaDEWzHXUgoY&redirect_uri=http://localhost&grant_type=authorization_code" \
+https://oauth2.googleapis.com/token
